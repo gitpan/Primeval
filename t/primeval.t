@@ -36,19 +36,23 @@ $Primeval::RETURN = 1;
     }
 }
 
-my $env = do {
-    my $ex = 1;
-    sub {
-        my @ey = (2, 3);
+SKIP: {
+    skip 'perl 5.010+ required to test closures', 3
+        if $] < 5.010;
+    my $env = do {
+        my $ex = 1;
         sub {
-            my $x = $ex + @ey;
-            my %ez = (4 => 5);
-            my $str = prim{eval} '$ex @ey %ez';
-            like $str, qr'\$ex: 1';
-            like $str, qr'@ey: \[2, 3\]';
-            like $str, qr'%ez: {4 => 5}';
+            my @ey = (2, 3);
+            sub {
+                my $x = $ex + @ey;
+                my %ez = (4 => 5);
+                my $str = prim{eval} '$ex @ey %ez';
+                like $str, qr'\$ex: 1';
+                like $str, qr'@ey: \[2, 3\]';
+                like $str, qr'%ez: {4 => 5}';
+            }
         }
-    }
-};
+    };
 
-$env->()->();
+    $env->()->();
+}

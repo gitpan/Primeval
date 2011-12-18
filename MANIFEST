@@ -9,3 +9,4 @@ t/pod.t
 t/primeval.t
 Makefile.PL
 META.yml
+META.json

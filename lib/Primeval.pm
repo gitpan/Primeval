@@ -66,7 +66,7 @@ package Primeval;
         "@msg"
     }
 
-    our $VERSION = '0.01';
+    our $VERSION = '0.02';
 
 =head1 NAME
 
@@ -74,7 +74,7 @@ Primeval - terse variable dumping
 
 =head1 VERSION
 
-version 0.01
+version 0.02
 
 =head1 SYNOPSIS
 
@@ -131,6 +131,8 @@ early.
 Eric Strom, C<< <asg at cpan.org> >>
 
 =head1 BUGS
+
+C<prim{eval}> only works correctly with closures in perl 5.10+
 
 please report any bugs or feature requests to C<bug-primeval at rt.cpan.org>,
 or through the web interface at
